@@ -1,0 +1,10 @@
+.calendar {
+    width: 280px;
+    height: 300px;
+}
+
+.calendar-table_week-days {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
