@@ -1,6 +1,8 @@
 .datepicker {
     width: 345px;
     height: 445px;
+    margin: 25px auto;
+    position: relative;
     border: 1px solid lightslategray;
 }
 
@@ -26,4 +28,8 @@
     top: 10px;
     width: 25px;
     height: 25px;
+}
+
+.datepicker_title {
+    text-align: center;
 }

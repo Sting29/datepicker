@@ -4,7 +4,17 @@
 }
 
 .calendar-table_week-days {
-    margin-top: 20px;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+}
+    
+.calendar-table_week-day {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }

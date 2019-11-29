@@ -11,8 +11,9 @@ export const CalendarState = ({children}) => {
      "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
     //const endDate = dateToday(new Date().setFullYear(new Date().getFullYear() + 1));
 
-    let monthSelected = monthNow;
-    let yearSelected = yearNow;
+    const monthSelected = monthNow;
+    const yearSelected = yearNow;
+    const monthNameSelected = monthNameArr[monthSelected];
 
 
     const daysInMonthSelected = (monthSelected, yearSelected) => {
@@ -80,9 +81,8 @@ export const CalendarState = ({children}) => {
 
     const initialState = {
         monthNameArr: monthNameArr,
-        monthNow: monthNow,
-        dayToday: dayToday,
-        yearNow: yearNow,
+        monthNameSelected: monthNameSelected,
+        yearSelected: yearSelected,
         calendarArray: calendarArray
     }
 

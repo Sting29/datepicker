@@ -4,15 +4,18 @@ import './CalendarTable.css';
 
 export const CalendarTable = (props) => {
     const {tableData} = props;
-    console.log(tableData)
 
     const days = tableData.map((item) => {
         const { id, dayNumber, celectable, celectedDay } = item;
 
         return (
-            <td key={id}>
-                <button type="button" disabled={!celectable}>{dayNumber}</button>
-            </td>
+            <button 
+                className="calendar-table_week-day"
+                type="button" 
+                key={id} 
+                disabled={!celectable}>
+                    {dayNumber}    
+                </button>
         );
       });
     
@@ -27,14 +30,9 @@ export const CalendarTable = (props) => {
                 <span className="calendar-table_week-day">`ו</span>
                 <span className="calendar-table_week-day">`ש</span>
             </div>
-            <table>
-                <tbody>
-                                    <tr>
-                    {days}
-                </tr>
-                </tbody>
-
-            </table>
+            <div className="calendar-table_week-days">
+                {days}
+            </div>
         </div>
     )
 }
