@@ -2,18 +2,18 @@ import React from 'react';
 
 import './CalendarTable.css';
 
-export const CalendarTable = (props) => {
-    const {tableData} = props;
-
-    const days = tableData.map((item) => {
+export const CalendarTable = ({calendarArray, selectDate}) => {
+    
+    const days = calendarArray.map((item) => {
         const { id, dayNumber, celectable, celectedDay } = item;
 
         return (
             <button 
-                className="calendar-table_week-day"
+                className={`calendar-table_week-day ${celectedDay ? 'day-selected' : ''}`}
                 type="button" 
                 key={id} 
-                disabled={!celectable}>
+                disabled={!celectable}
+                onClick={() => selectDate(dayNumber)}>
                     {dayNumber}    
                 </button>
         );
