@@ -1,9 +1,10 @@
+const monthNameArr = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
+ "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
+
 const dateToday = new Date();
 const dayToday = dateToday.getDate();
 const monthNow = dateToday.getMonth();
 const yearNow = dateToday.getFullYear();
-const monthNameArr = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
- "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
 
 const monthEnd = monthNow === 0 ? 11 : monthNow - 1;
 const yearEnd = yearNow + 1;
@@ -67,7 +68,7 @@ export const createCalendarArray = (monthSelected, yearSelected, dateSelected) =
     dateTemp.setFullYear(yearSelected, monthSelected, 1);
     const weekDayFirst = dateTemp.getDay();
     const daysInMonth = daysInMonthSelected(monthSelected, yearSelected);
-    
+
     if (dateSelected 
         && dateSelected.getFullYear() === yearSelected 
         && dateSelected.getMonth() === monthSelected) {
@@ -77,6 +78,35 @@ export const createCalendarArray = (monthSelected, yearSelected, dateSelected) =
     return buildCalendar(daysInMonth, weekDayFirst, monthSelected, chosenDay, monthNow, dayToday);
 }
 
+const createDropdownList = () => {
+    const list = [];
+    let monthTemp = monthNow;
+    let yearTemp = yearNow;
+
+    for (let i = 0; i < monthNameArr.length; i++) {
+        if(monthTemp <= 11) {
+            list.push({
+                monthNumber: monthTemp,
+                monthName: monthNameArr[monthTemp],
+                yearList: yearTemp
+            });
+            monthTemp++;
+        } else {
+            monthTemp = 0;
+            yearTemp++;
+            list.push({
+                monthNumber: monthTemp,
+                monthName: monthNameArr[monthTemp],
+                yearList: yearTemp
+            });
+            monthTemp++;
+        }
+    }
+
+    return list;
+}
+
+const dropdownList = createDropdownList();
 const calendarArray = createCalendarArray(monthNow, yearNow);
 
 export const initialState = {
@@ -91,5 +121,6 @@ export const initialState = {
     yearEnd: yearEnd,
     nextButtonDisabled: false,
     prevButtonDisabled: true,
-    dateSelected: null
+    dateSelected: null,
+    dropdownList: dropdownList
 }

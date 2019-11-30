@@ -1,0 +1,10 @@
+.calendar-dropdown {
+    position: relative;
+    width: 120px;
+    text-align: end;
+}
+
+.calendar-dropdown_list {
+    position: absolute;
+    right: 0;
+}

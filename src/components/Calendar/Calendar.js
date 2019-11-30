@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import {CalendarTable} from '../CalendarTable/CalendarTable';
-import { CalendarContext } from '../../context/calendar/calendarContext';
+import {CalendarDropdown} from '../CalendarDropdown/CalendarDropdown';
+import {CalendarContext} from '../../context/calendar/calendarContext';
 import './Calendar.css';
 
 export const Calendar = () => {
     const {calendarData, nextMonth, prevMonth, selectDate} = useContext(CalendarContext);
-    const {monthNameSelected, yearSelected, nextButtonDisabled, prevButtonDisabled, calendarArray} = calendarData;
+    const {nextButtonDisabled, prevButtonDisabled, calendarArray} = calendarData;
     console.log('Calendar', calendarData);
     
     return (
@@ -17,7 +18,7 @@ export const Calendar = () => {
                     disabled={prevButtonDisabled}>
                         back
                 </button>
-                <p className="calendar-month_select">{yearSelected} {monthNameSelected}</p>
+                <CalendarDropdown />
                 <button 
                     className="calendar-month_next"
                     onClick={nextMonth}
