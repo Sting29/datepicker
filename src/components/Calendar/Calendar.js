@@ -6,7 +6,7 @@ import './Calendar.css';
 export const Calendar = () => {
     const {calendarData, nextMonth, prevMonth, selectDate} = useContext(CalendarContext);
     const {monthNameSelected, yearSelected, nextButtonDisabled, prevButtonDisabled, calendarArray} = calendarData;
-    console.log('Calendar', calendarData, nextMonth, nextButtonDisabled);
+    console.log('Calendar', calendarData);
     
     return (
         <div className="calendar">

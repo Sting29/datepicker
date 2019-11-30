@@ -29,10 +29,9 @@ const daysInMonthSelected = (monthSelected, yearSelected) => {
     }
 }
 
-const buildCalendar = (daysInMonth, weekDayFirst, monthSelected) => {
+const buildCalendar = (daysInMonth, weekDayFirst, monthSelected, chosenDay) => {
     let counter = 1
     let arr = [];
-    console.log(daysInMonth, weekDayFirst, monthSelected, monthNow);
     for (let i = 0; i < 42; i++) {
         if (i >= weekDayFirst && i < weekDayFirst + daysInMonth) {
             arr.push({
@@ -56,19 +55,29 @@ const buildCalendar = (daysInMonth, weekDayFirst, monthSelected) => {
             arr[i].celectable = false;
         }
     }
+    if (chosenDay) {
+        arr[chosenDay + weekDayFirst - 1].celectedDay = true;
+    }
     return arr;
 }
 
-export const createCalendarArray = (monthSelected, yearSelected) => {
-    let dateTemp = new Date();
+export const createCalendarArray = (monthSelected, yearSelected, dateSelected) => {
+    let chosenDay = null;
+    const dateTemp = new Date();
     dateTemp.setFullYear(yearSelected, monthSelected, 1);
     const weekDayFirst = dateTemp.getDay();
     const daysInMonth = daysInMonthSelected(monthSelected, yearSelected);
+    
+    if (dateSelected 
+        && dateSelected.getFullYear() === yearSelected 
+        && dateSelected.getMonth() === monthSelected) {
+            chosenDay = dateSelected.getDate()
+    }
 
-    return buildCalendar(daysInMonth, weekDayFirst, monthSelected, monthNow, dayToday);
+    return buildCalendar(daysInMonth, weekDayFirst, monthSelected, chosenDay, monthNow, dayToday);
 }
 
-const calendarArray = createCalendarArray(monthNow, yearNow, dayToday, monthNow);
+const calendarArray = createCalendarArray(monthNow, yearNow);
 
 export const initialState = {
     monthNameArr: monthNameArr,
@@ -81,5 +90,6 @@ export const initialState = {
     monthEnd: monthEnd,
     yearEnd: yearEnd,
     nextButtonDisabled: false,
-    prevButtonDisabled: true
+    prevButtonDisabled: true,
+    dateSelected: null
 }

@@ -1,53 +1,73 @@
-import {NEXT_MONTH, PREV_MONTH, SELECT_DATE} from '../types';
+import {NEXT_MONTH, PREV_MONTH, SELECT_DATE, CHEKED_MONTH} from '../types';
 import {createCalendarArray} from '../../helpers/calendar';
 
 export const calendarReducer = (state, action) => {
     switch (action.type) {
         case NEXT_MONTH: {
-            const {monthSelected, monthNameArr, yearSelected, yearEnd, monthEnd} = state;
-            if (yearEnd === yearSelected && monthEnd === monthSelected) {
+            const {monthSelected, monthNameArr, yearSelected, yearEnd, monthEnd, dateSelected} = state;
+            const monthSelectedNew = monthSelected === 11 ? 0 : monthSelected + 1;
+            const yearSelectedNew = monthSelected === 11 ? yearSelected + 1 : yearSelected;
+            if (yearEnd === yearSelectedNew && monthEnd === monthSelected + 1) {
                 return {
                     ...state,
+                    monthSelected: monthSelectedNew,
+                    yearSelected: yearSelectedNew,
+                    monthNameSelected: monthNameArr[monthSelectedNew],
+                    calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew, dateSelected),
+                    prevButtonDisabled: false,
                     nextButtonDisabled: true
                 };
             }
-            const monthSelectedNew = monthSelected === 11 ? 0 : monthSelected + 1;
-            const yearSelectedNew = monthSelected === 11 ? yearSelected + 1 : yearSelected;
             return {
                 ...state,
                 monthSelected: monthSelectedNew,
                 yearSelected: yearSelectedNew,
                 monthNameSelected: monthNameArr[monthSelectedNew],
-                calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew),
+                calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew, dateSelected),
                 prevButtonDisabled: false
             };
         }
 
         case PREV_MONTH: {
-            const {monthSelected, monthNameArr, yearSelected, yearStart, monthStart} = state;
-            if (yearStart === yearSelected && monthStart === monthSelected) {
+            const {monthSelected, monthNameArr, yearSelected, yearStart, monthStart, dateSelected} = state;
+            const monthSelectedNew = monthSelected === 0 ? 11 : monthSelected - 1;
+            const yearSelectedNew = monthSelected === 0 ? yearSelected - 1 : yearSelected;
+            if (yearStart === yearSelected && monthStart === monthSelected - 1) {
                 return {
                     ...state,
+                    monthSelected: monthSelectedNew,
+                    yearSelected: yearSelectedNew,
+                    monthNameSelected: monthNameArr[monthSelectedNew],
+                    calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew, dateSelected),
+                    nextButtonDisabled: false,
                     prevButtonDisabled: true
                 };
             }
-            const monthSelectedNew = monthSelected === 0 ? 11 : monthSelected - 1;
-            const yearSelectedNew = monthSelected === 0 ? yearSelected - 1 : yearSelected;
             return {
                 ...state,
                 monthSelected: monthSelectedNew,
                 yearSelected: yearSelectedNew,
                 monthNameSelected: monthNameArr[monthSelectedNew],
-                calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew),
+                calendarArray: createCalendarArray(monthSelectedNew, yearSelectedNew, dateSelected),
                 nextButtonDisabled: false
             };
         }
 
         case SELECT_DATE: {
-            const {payload} = action;
-            console.log('SELECT_DAT red', payload, action);
+            const daySelected = action.payload;
+            const {monthSelected, yearSelected} = state;
+            const dateSelectedNew = new Date();
+            dateSelectedNew.setFullYear(yearSelected, monthSelected, daySelected);
+            console.log('dateSelected', dateSelectedNew);
+            return {
+                ...state,
+                dateSelected: dateSelectedNew,
+                calendarArray: createCalendarArray(monthSelected, yearSelected, dateSelectedNew),
+            };
+        }
 
-            return {...state, ch: true};
+        case CHEKED_MONTH: {
+            return state;
         }
 
         default:

@@ -20,7 +20,6 @@ export const CalendarState = ({children}) => {
     };
 
     const selectDate = id => {
-        console.log(id);
         dispatch({
             type: SELECT_DATE,
             payload: id
