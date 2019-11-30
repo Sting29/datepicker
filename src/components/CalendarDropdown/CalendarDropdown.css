@@ -5,6 +5,11 @@
 }
 
 .calendar-dropdown_list {
+    display: none;
     position: absolute;
     right: 0;
+}
+
+.calendar-dropdown_list.active {
+    display: block;
 }

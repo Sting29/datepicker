@@ -1,21 +1,27 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {CalendarContext} from '../../context/calendar/calendarContext';
 
 import './CalendarDropdown.css';
 
 export const CalendarDropdown = () => {
-    const {calendarData} = useContext(CalendarContext);
+    const {calendarData, selectMonth} = useContext(CalendarContext);
     const {monthNameSelected, yearSelected, dropdownList} = calendarData;
+    const [dropdownActive, setDropdownActive] = useState(false);
+
+    const selectHandler = (selectMonthData) => {
+        selectMonth(selectMonthData);
+        setDropdownActive(false);
+    }
 
     const listItem = dropdownList.map((item) => {
-        const { monthNumber, monthName, yearList } = item;
+        const { monthName, yearList } = item;
 
         return (
-            <li key={monthName}>
+            <li key={`${monthName}-${yearList}`}>
                 <button 
                     className="calendar-dropdown_list__item"
                     type="button" 
-                    onClick={() => console.log( monthNumber, monthName, yearList)}>
+                    onClick={() => selectHandler(item)}>
                         {monthName} {yearList}
                 </button>
             </li>
@@ -27,10 +33,10 @@ export const CalendarDropdown = () => {
         <div className="calendar-dropdown">
             <button 
                 className="calendar-dropdown_button"
-                onClick={() => console.log('drop click')}>
+                onClick={() => setDropdownActive(!dropdownActive)}>
                     {yearSelected} {monthNameSelected}
             </button>
-            <ul className="calendar-dropdown_list">
+            <ul className={`calendar-dropdown_list ${dropdownActive ? 'active' : ''}`}>
                 {listItem}
             </ul>
         </div>

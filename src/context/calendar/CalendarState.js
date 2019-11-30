@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 import {CalendarContext} from './calendarContext';
 import {calendarReducer} from './calendarReducer';
 import {initialState} from '../../helpers/calendar';
-import {NEXT_MONTH, PREV_MONTH, SELECT_DATE} from '../types';
+import {NEXT_MONTH, PREV_MONTH, SELECT_DATE, SELECT_MONTH} from '../types';
 
 export const CalendarState = ({children}) => {
     const [state, dispatch] = useReducer(calendarReducer, initialState);
@@ -26,9 +26,16 @@ export const CalendarState = ({children}) => {
         })
     }
 
+    const selectMonth = (monthSelectedData) => {
+        dispatch({
+            type: SELECT_MONTH,
+            payload: monthSelectedData
+        })
+    }
+
     return (
         <CalendarContext.Provider value={{
-            nextMonth, prevMonth, selectDate,
+            nextMonth, prevMonth, selectDate, selectMonth,
             calendarData: state
         }}>
             {children}

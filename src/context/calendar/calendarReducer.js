@@ -1,4 +1,4 @@
-import {NEXT_MONTH, PREV_MONTH, SELECT_DATE, CHEKED_MONTH} from '../types';
+import {NEXT_MONTH, PREV_MONTH, SELECT_DATE, SELECT_MONTH} from '../types';
 import {createCalendarArray} from '../../helpers/calendar';
 
 export const calendarReducer = (state, action) => {
@@ -66,8 +66,42 @@ export const calendarReducer = (state, action) => {
             };
         }
 
-        case CHEKED_MONTH: {
-            return state;
+        case SELECT_MONTH: {
+            console.log(action.payload);
+            const {monthNumber, monthName, yearList} = action.payload;
+            const {dateSelected, yearEnd, monthEnd, yearStart, monthStart} = state;
+
+            if(yearStart === yearList && monthStart === monthNumber) {
+                return {
+                    ...state,
+                    monthSelected: monthNumber,
+                    yearSelected: yearList,
+                    monthNameSelected: monthName,
+                    calendarArray: createCalendarArray(monthNumber, yearList, dateSelected),
+                    prevButtonDisabled: true,
+                    nextButtonDisabled: false
+                }
+            } else if (yearEnd === yearList && monthEnd === monthNumber) {
+                return {
+                    ...state,
+                    monthSelected: monthNumber,
+                    yearSelected: yearList,
+                    monthNameSelected: monthName,
+                    calendarArray: createCalendarArray(monthNumber, yearList, dateSelected),
+                    prevButtonDisabled: false,
+                    nextButtonDisabled: true
+                }
+            } else {
+                return {
+                    ...state,
+                    monthSelected: monthNumber,
+                    yearSelected: yearList,
+                    monthNameSelected: monthName,
+                    calendarArray: createCalendarArray(monthNumber, yearList, dateSelected),
+                    prevButtonDisabled: false,
+                    nextButtonDisabled: false
+                }
+            }
         }
 
         default:
