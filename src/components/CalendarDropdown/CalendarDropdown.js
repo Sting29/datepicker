@@ -32,14 +32,13 @@ export const CalendarDropdown = () => {
     return (
         <div className="calendar-dropdown">
             <button 
-                className="calendar-dropdown_button"
+                className={`calendar-dropdown_button ${dropdownActive ? 'open' : ''}`}
                 onClick={() => setDropdownActive(!dropdownActive)}>
-                    {yearSelected} {monthNameSelected}
+                    {monthNameSelected} {yearSelected}
             </button>
             <ul className={`calendar-dropdown_list ${dropdownActive ? 'active' : ''}`}>
                 {listItem}
             </ul>
         </div>
-        
     )
 }

@@ -16,8 +16,3 @@
 	url('./fonts/almoni-dl-aaa-700.ttf') format('truetype'),
 	url('./fonts/almoni-dl-aaa-700.woff') format('woff');
 }
-
-
-.App {
-  text-align: center;
-}

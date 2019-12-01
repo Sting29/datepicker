@@ -1,4 +1,56 @@
 .calendar-month {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.calendar-month_button {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+.calendar-month_button[disabled] {
+    border-color: #F0F0F0;
+}
+
+.calendar-month_button__back:before, .calendar-month_button__back:after,
+.calendar-month_button__next:before, .calendar-month_button__next:after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #636365;
+}
+
+.calendar-month_button__back[disabled]:before, .calendar-month_button__back[disabled]:after,
+.calendar-month_button__next[disabled]:before, .calendar-month_button__next[disabled]:after {
+    background-color: lightgray;
+}
+
+.calendar-month_button__back:before {
+    top: 43%;
+    left: 49%;
+    transform: rotate(45deg);
+}
+
+.calendar-month_button__back:after {
+    top: 24%;
+    left: 49%;
+    transform: rotate(-45deg);    
+}
+
+.calendar-month_button__next:before {
+    top: 43%;
+    left: 46%;
+    transform: rotate(315deg);
+}
+
+.calendar-month_button__next:after {
+    top: 24%;
+    left: 46%;
+    transform: rotate(225deg);    
 }

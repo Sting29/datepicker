@@ -1,6 +1,7 @@
 .calendar {
     width: 280px;
-    height: 300px;
+    height: 320px;
+    margin-bottom: 17px;
 }
 
 .calendar-table_week-days {
@@ -16,5 +17,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "almoni-dl";
+    font-size: 15px;
+    color: #A29E9E;
+}
 
+.calendar-table_day {
+    width: 35px;
+    height: 35px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: #D8EAEA;
+    color: #25867D;
+    font-family: "Open Sans";
+    font-size: 12px;
+}
+
+.calendar-table_day.empty {
+    background-color: transparent;
+}
+
+.calendar-table_day[disabled] {
+    background-color: transparent;
+    color: #D0D0D6;
+}
+
+.calendar-table_day:hover,
+.calendar-table_day.day-selected {
+    background-color: #25867D;
+    color: #E6FFFF;
 }

@@ -1,5 +1,6 @@
 const monthNameArr = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
  "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
+ const weekDayNames = ["א'", "ב'", "ג'", "ד'", "ה'", "ו'", "ש'"];
 
 const dateToday = new Date();
 const dayToday = dateToday.getDate();
@@ -39,7 +40,8 @@ const buildCalendar = (daysInMonth, weekDayFirst, monthSelected, chosenDay) => {
                 id: `day-${i}`,
                 dayNumber: counter,
                 celectable: true,
-                celectedDay: false
+                celectedDay: false,
+                empty: false
             });
             counter++;
         } else {
@@ -47,7 +49,8 @@ const buildCalendar = (daysInMonth, weekDayFirst, monthSelected, chosenDay) => {
                 id: `day-${i}`,
                 dayNumber: '',
                 celectable: false,
-                celectedDay: false
+                celectedDay: false,
+                empty: true
             });
         }
     }
@@ -122,5 +125,6 @@ export const initialState = {
     nextButtonDisabled: false,
     prevButtonDisabled: true,
     dateSelected: null,
-    dropdownList: dropdownList
+    dropdownList: dropdownList,
+    weekDayNames: weekDayNames
 }

@@ -5,28 +5,26 @@ import {CalendarContext} from '../../context/calendar/calendarContext';
 import './Calendar.css';
 
 export const Calendar = () => {
-    const {calendarData, nextMonth, prevMonth, selectDate} = useContext(CalendarContext);
-    const {nextButtonDisabled, prevButtonDisabled, calendarArray} = calendarData;
+    const {calendarData, nextMonth, prevMonth} = useContext(CalendarContext);
+    const {nextButtonDisabled, prevButtonDisabled} = calendarData;
     
     return (
         <div className="calendar">
             <div className="calendar-month">
                 <button 
-                    className="calendar-month_back"
+                    className="calendar-month_button calendar-month_button__back"
                     onClick={prevMonth}
-                    disabled={prevButtonDisabled}>
-                        back
+                    disabled={prevButtonDisabled}>  
                 </button>
                 <CalendarDropdown />
                 <button 
-                    className="calendar-month_next"
+                    className="calendar-month_button calendar-month_button__next"
                     onClick={nextMonth}
                     disabled={nextButtonDisabled}>
-                        next
                 </button>
             </div>
             <div className="calendar-dates" >
-                <CalendarTable calendarArray={calendarArray} selectDate={selectDate} />
+                <CalendarTable />
             </div>
         </div>
     )

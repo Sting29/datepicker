@@ -1,34 +1,38 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {CalendarContext} from '../../context/calendar/calendarContext';
 
 import './CalendarTable.css';
 
-export const CalendarTable = ({calendarArray, selectDate}) => {
+export const CalendarTable = () => {
+
+    const {calendarData, selectDate} = useContext(CalendarContext);
+    const {calendarArray, weekDayNames} = calendarData;
+
+    const dayNames = weekDayNames.map(item => {
+        return (
+            <span key={item} className="calendar-table_week-day">{item}</span>
+        )
+    })
     
-    const days = calendarArray.map((item) => {
-        const { id, dayNumber, celectable, celectedDay } = item;
+    const days = calendarArray.map(item => {
+        const { id, dayNumber, celectable, celectedDay, empty } = item;
 
         return (
             <button 
-                className={`calendar-table_week-day ${celectedDay ? 'day-selected' : ''}`}
+                className={`calendar-table_day ${celectedDay ? 'day-selected' : ''} ${empty ? 'empty' : ''}`}
                 type="button" 
                 key={id} 
                 disabled={!celectable}
                 onClick={() => selectDate(dayNumber)}>
                     {dayNumber}    
-                </button>
+            </button>
         );
       });
     
     return (
         <div className="calendar-table">
             <div className="calendar-table_week-days">
-                <span className="calendar-table_week-day">`א</span>
-                <span className="calendar-table_week-day">`ב</span>
-                <span className="calendar-table_week-day">`ג</span>
-                <span className="calendar-table_week-day">`ד</span>
-                <span className="calendar-table_week-day">`ה</span>
-                <span className="calendar-table_week-day">`ו</span>
-                <span className="calendar-table_week-day">`ש</span>
+                {dayNames}
             </div>
             <div className="calendar-table_week-days">
                 {days}

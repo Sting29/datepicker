@@ -1,35 +1,78 @@
 .datepicker {
     width: 345px;
     height: 445px;
-    margin: 25px auto;
+    margin: 25px auto; /*I'm add this margin for viewing convenience*/
     position: relative;
-    border: 1px solid lightslategray;
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(140,140,140,0.8);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(140,140,140,0.8);
+    box-shadow: 0px 0px 7px 0px rgba(140,140,140,0.8);
 }
 
 .datepicker-wrap {
     width: 280px;
-    height: 390px;
-    margin-left: 33px;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-}
-
-.datepicker_legend {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
 }
 
 .datepicker_exit-button {
     position: absolute;
     left: 10px;
-    top: 10px;
-    width: 25px;
-    height: 25px;
+    top: 12px;
+    width: 19px;
+    height: 19px;
+    background-color: transparent;
+    border: none;
+}
+
+.datepicker_exit-button:before, .datepicker_exit-button:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: 8px;
+    width: 2px;
+    height: 17px;
+    background-color: #AFAFB0;
+}
+
+.datepicker_exit-button:before {
+    transform: rotate(45deg);
+}
+.datepicker_exit-button:after {
+    transform: rotate(-45deg);
 }
 
 .datepicker_title {
     text-align: center;
+    font-family: "almoni-dl";
+    font-weight: 800;
+    font-size: 19px;
+    color: #636365
+}
+
+.datepicker_legend {
+    display: flex;
+    font-family: "almoni-dl";
+    font-weight: bold;
+    font-size: 13px;
+    color: #71626F;
+    margin-bottom: 6px;
+}
+
+.datepicker_legend__allowed {
+    height: 14px;
+    width: 14px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #D8EAEA;
+}
+
+.datepicker_legend__denied {
+    height: 14px;
+    width: 14px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #FFE9F1;
 }

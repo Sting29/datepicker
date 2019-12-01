@@ -32,7 +32,7 @@ export const calendarReducer = (state, action) => {
             const {monthSelected, monthNameArr, yearSelected, yearStart, monthStart, dateSelected} = state;
             const monthSelectedNew = monthSelected === 0 ? 11 : monthSelected - 1;
             const yearSelectedNew = monthSelected === 0 ? yearSelected - 1 : yearSelected;
-            if (yearStart === yearSelected && monthStart === monthSelected - 1) {
+            if (yearStart === yearSelectedNew && monthStart === monthSelectedNew) {
                 return {
                     ...state,
                     monthSelected: monthSelectedNew,
