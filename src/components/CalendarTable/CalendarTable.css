@@ -37,17 +37,28 @@
     font-size: 12px;
 }
 
-.calendar-table_day.empty {
-    background-color: transparent;
-}
+
 
 .calendar-table_day[disabled] {
     background-color: transparent;
     color: #D0D0D6;
 }
 
+.calendar-table_day.empty {
+    background-color: transparent;
+}
+
 .calendar-table_day:hover,
 .calendar-table_day.day-selected {
     background-color: #25867D;
     color: #E6FFFF;
+}
+
+.calendar-table_day.empty:hover {
+    background-color: transparent;
+}
+
+.calendar-table_day[disabled]:hover {
+    background-color: transparent;
+    color: #D0D0D6;
 }
